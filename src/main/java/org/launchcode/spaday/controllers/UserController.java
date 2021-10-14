@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @GetMapping("add")
-   public String displayAddUserForm(Model model){
-//        model.addAttribute(new User());
+    public String displayAddUserForm(){
+
         return "user/add";
     }
 
 
     @PostMapping("add")
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
-        model.addAttribute("user", user);
+    public String processAddUserForm( @ModelAttribute User user, String verify) {
 
-        if(user.getPassword() == verify){
+
+        if(user.getPassword().equals(verify)){
             return "user/index";
         }
-       else { return "user/add";}
+        else { return "user/add";}
 
     }
 
 
 }
+
